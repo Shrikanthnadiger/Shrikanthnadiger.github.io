@@ -1,31 +1,54 @@
-<!DOCTYPE html>
-<html style="height:100%">
-  <head>
-    <meta charset="UTF-8" />
+<html style="height:100%"><head>
+    <meta charset="UTF-8">
     <title>user login!</title>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-     <link  rel="stylesheet" type="text/css" href="css/stylesheet.css">     
+     <link rel="stylesheet" type="text/css" href="css/stylesheet.css">     
   </head>
-  <body style="background:url(img/bg.png) repeat;height: 100%;">
+  <body style="height: 100%;background:rgba(0, 0, 0, 0.8);">
+  <div style="
+    background: #FF1EA7;
+    height: 6%;
+    color: white;
+    font-size: 40px;
+    padding-left: 25px;
+    font-family: helvetica;
+">if</div>
     <div class="row" style="height: 100%;margin-right:0px">
     	<div class="col-md-4 col-xs-1 col-sm-3 col-lg-4 vcenter" style="height:100%"></div>
-  		<div class="col-xs-10  col-md-5 col-lg-4 col-sm-6 vcenter" style="margin-top:-10%">
-        	<div class="form-login" style="text-align:center">
-		            <h4 >Welcome To Invisible Friend</h4>
-		            <input type="text" id="userName" class="form-control input-sm chat-input" placeholder="username">
+  		<div class="col-xs-10  col-md-5 col-lg-4 col-sm-6 vcenter" style="margin-top:-10%;/* height: 31% !important; ;*/">
+        	<div class="form-login" style="height: 210px;text-align:center;/* width: 548px; */">
+		            <h4 style="
+    font-weight: bold;
+    text-align: left;
+">Login to dashboard</h4>
+		            <input type="text" id="userName" class="form-control input-sm chat-input" placeholder="username" style="width:30%"/>
 		            <br>
-		            <input type="text" id="userPassword" class="form-control input-sm chat-input" placeholder="password">
+		            <input type="text" id="userPassword" class="form-control input-sm chat-input" placeholder="password" style="width:30%"/>
 		            <br>
-		            <div >
-		            <span class="group-btn">     
-		                <a href="#" class="btn btn-primary btn-md" onclick="return submit(event)">login <i class="fa fa-sign-in"></i></a>
+		            <div style="
+    float: left;
+    /* width: 20%; */
+">
+		            <span class="group-btn" style="
+    width: 43%;
+">     
+		                <a href="#" class="btn btn-primary btn-md" onclick="return submit(event)" style="
+    width: 80px;
+    height: 34px;
+    font-weight: bold;
+">login <i class="fa fa-sign-in"></i></a>
 		            </span>
-	        </div>
+	        </div><img src="img\logo.png" style="
+    height: 350px;
+    width: 280px;
+    margin-top: -189px;
+    margin-left: 100px;
+">
     	</div>
 	</div>
-</body>
-</html>
+
+
   <script type="text/javascript">
 function submit(e){
 	e.preventDefault();
@@ -42,3 +65,4 @@ function submit(e){
 	
 }
   </script>
+</div></body></html>
