@@ -1,60 +1,75 @@
 <!DOCTYPE html>
 <!-- SVG graphs for dashboard -->
-<html lang="en">
+<html lang="en" >
     <head>
         <meta charset="utf-8">
         <title>Home Page</title>  
 
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.js"></script>        
         <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script> 
-        <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
+        <script type="text/javascript" src="../js/bootstrap.min.js"></script>
         <link  rel="stylesheet" type="text/css" href="../css/stylesheet.css"> 
         <link  rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"> 
     </head>
-    <body>
-<div class="row" style="background-color:teal">
-	<section id="leftBar" class="col-sm-2"> 
-    <div class="col-sm-12" id="login" > 
-        <img class="col-sm-4" src="../img/Tulips.jpg" id="loginImag"></img> 
-        <p class="col-sm-8">Johnny Depp</p> 
-        <p class="col-sm-6" id="designation">Admin&#9660;</p> 
-    </div> 
+<body>
 
-        <p>Dashboard</p>
-	</section>
-	<section id="rightBar" class="col-sm-10">
-	    <header class="col-sm-12">
-            <a href="../" id="logOut">Log Out</a>          
-        </header>
-        <div class="col-sm-12" style="background-color:aliceblue">
+<div class="col-xs-12" style="background-color:teal;padding:0;height:100%">
+    <header class="col-xs-12" >
+    <div class="col-xs-6 col-sm-8 col-md-10 col-lg-10" style="font-size: 1.5em;margin-top: 1em;"> 
+        <span>Welcome Jhony</span>
+    </div>
+    <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+        <div class="col-xs-10 col-sm-4 col-md-6 col-lg-5">
+            <div class="dropdown" style="margin-top:0.8em">
+              <span class="btn dropdown-toggle" type="button" id="profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <img class="img-responsive" src="../img/Tulips.jpg" id="loginImag"></img> 
+               </span>
+              <ul class="dropdown-menu" aria-labelledby="profile">
+                <li><a href="#">Johny Depp(Admin)</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="../">Logout</a></li>
+              </ul>
+            </div>
+        </div>
+     </div>
+    </header>
+	<div class="col-sm-2" id="leftBar" > 
+        <ul class="nav nav-list sidelist">
+          <li class="active"><a href="#"> Dashboard</a></li>
+        </ul>
+    </div> 
+	<div id="rightBar" class="col-sm-10" style="min-height:90%;background-color:aliceblue">
+	    
+        <div class="col-xs-12" style="background-color:aliceblue">
                     <div class="col-sm-6 col-md-4 " id="chUser">   </div>  
                     <div class="col-sm-6 col-md-4 " id="chActive">   </div>  
                     <div class="col-sm-6 col-md-4 " id="chLook">   </div>  
-                </div>
-	    <div class="col-sm-12"  id="charts">
-            <div class="col-xs-12 col-sm-12 col-md-4"  id="pie"></div>  
-            <div class="col-xs-12 col-sm-12 col-md-4"  id="bar" ></div>       
-            <div class="col-xs-12 col-sm-12 col-md-4" id="clock">        </div>     
+        </div>
+	    <div class="col-xs-12"  id="charts">
+            <div class="col-xs-12 col-sm-6  col-lg-4" id="clock"></div>
+            <div class="col-xs-12 col-sm-6  col-lg-4"  id="pie"></div>  
+            <div class="col-xs-12 col-sm-12 col-lg-4"  id="bar" ></div>       
+            
         </div>    
-        <div class="col-sm-12" id="looks" style="background-color:aliceblue">
-            <div class="col-sm-4" >
-                        <div class="col-sm-12" id="lookh"></div>
+        <div class="col-xs-12" id="looks" style="background-color:aliceblue">
+            <div class="col-sm-12 col-lg-6">
+                        <div class="col-sm-12 " id="lookh"></div>
                         <div class="col-sm-12" id="lookd" ></div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-12 col-lg-6">
                         <div class="col-sm-12" id="lookph"></div>
-                        <div class="col-sm-12" id="lookpd" ></div>
+                        <div class="col-sm-12" id="lookpd" style="height:100px" ></div>
             </div>
-            
-         </div>     
+        </div>     
         <script type="text/javascript" src="../js/dashboard.js"></script>
-    </section>
-    <footer class="footer col-xs-12">
-            <p>&copy;invisiblefriend.com </p>
-    </footer>
+    </div>
 </div>  
-
+<footer class="footer">
+            <p>&copy;invisiblefriend.com </p>
+</footer>
 <script type="text/javascript" src="../js/newjs.js"></script>
 <script type="text/javascript" src="../js/myjs.js" ></script>
     </body>
