@@ -26,35 +26,31 @@ main {
 
 
 header{
-    height:4rem;
     width :auto;
     background-color: #383838 ;   
     color:white;
 }
 
 footer{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
     height:4rem;
-    width :auto;
-    background-color: #A0A0A0 ;
+    background-color: #383838 ;
     line-height:4rem;
     color:white;
     font-size:1.25rem;
 }
 
 section#leftBar{
-	height:50rem;
-	width:15%;
 	background-color: teal;
-	float:left;
 	text-align:center;
-    color:white;
-    font-size:1.5rem;	
+  color:white;
+  font-size:1.5rem;	
 }
 
 section#rightBar{
 	height:auto;
-	width:85%;	
-	float:left;
 	text-align: center;
 }
 
@@ -140,4 +136,21 @@ border-radius: 50%;
         font-size: 12px;
     }
 
+    #rightBar{
+      padding: 0;
+    }
+    .sidelist{
+      margin-top: 3em;
+
+    }
+    .sidelist>li>a{
+      color: black;
+    
+      border: 1px solid;
+      background-color: pink;
+      border-radius: 5px;
+    }
+    html,body{
+      height: 100%
+    }
 
