@@ -1,41 +1,20 @@
-usersummary("#chUser","Total Number of Users",100);
-usersummary("#chLook","Total Number of Looks",1000);
-	
-
-var svg = d3.select("#chActive")
-			.append("svg")
-  			.attr("width", 400)
-  			.attr("height", 200)
-  			.append("g")
-  			.attr("transform", "translate(200,100)");
-
-var dataset=[{"val":55},{"val":45}];
+usersummary("#chUser","Total Users",100,'a');
+usersummary("#chLook","Total Looks",1000,'b');
+usersummary("#chActiveu","Total Looks",1000,'c');
+usersummary("#chLooks","Total  Looks",1000,'d');
+usersummary("#chLookss","Total  Looks",1000,'e');
+$("#a").css("display","block");
+$( document ).ready(function() {
+var date=new Date();
+    var monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
+    var mon_yr=monthNames[date.getMonth()]+'-'+date.getFullYear();
+    $("#monyr").text(mon_yr);
+    showchart(mon_yr);
+})
+var dataset=[55,45];
 var color = d3.scale.ordinal()
       		  .range(["#98abc5", "#ffffff"]);
-var pie = d3.layout
- 	   	    .pie()
-		    .sort(null) 
-		    .value(function(d) { return d.val; });    
-var arc = d3.svg
-            .arc()
-    		.outerRadius(100)
-    		.innerRadius(70);
-var g =  svg.selectAll(".arc")
-    	    .data(pie(dataset))
-    		.enter()
-    		.append("g")
-    		.attr("class", "arc");
-
-  		   g.append("path")
-    		.attr("d", arc)
-    		.style("fill", "#fff")
-    		.transition()
-    		.delay(function (d, i) { return i*300; })
-    		.style("fill", function(d) { return color(d.data.val); });
-
-   		   g.append("text")                                     
-    		.attr("text-anchor", "middle")                          
-    		.text("Total Active Users:55");
+showactiveusers();
 
 	    svg=d3.select("#lookh")
 	  		.append("svg")
@@ -114,3 +93,91 @@ var pie = d3.layout.pie()
    
 repeat(s_line,m_line,h_line);
 setInterval(function(){repeat(s_line,m_line,h_line);},1000);
+
+$(".showdata").click(function(e){
+
+$('.showdata').removeClass("active");
+$(this).addClass("active");
+var type="#"+$(this).attr("type");
+$('.data').hide();
+$(type).show();
+
+})
+
+
+var picker = new Pikaday(
+    {
+        field: document.getElementById('datepicker'),
+        firstDay: 1,
+        minDate: new Date(2000, 0, 1),
+        maxDate: new Date(2020, 12, 31),
+        yearRange: [2000,2020],
+         onSelect: function() {
+            var s_date=new Date(document.getElementById('datepicker').value);
+            var month=s_date.getMonth()+1;
+            document.getElementById('datepicker').value=s_date.getFullYear()+'-'+month+'-'+s_date.getDate();
+            $('.mau').html("Most Active User For "+document.getElementById('datepicker').value+" is <span>Shrikant</span>");
+            $('.mau').show();
+            
+        }
+ });
+$(".sumdiv").click(function(){
+$(".sumdiv").removeClass("sactive");
+$(".sumdiv").css("border-color","pink")
+$(this).css("border-color","teal")
+$(this).addClass("sactive");
+var typ=$(this).attr("type");
+$(".arrow").css("display","none");
+$("#"+typ).css("display","block");
+});
+
+
+
+$('.premon').click(function(){
+	var thismon=($("#monyr").text()).split("-");
+	var monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
+	var date=new Date();
+	var tmon=date.getMonth();
+	var tyr=date.getFullYear();
+	var index=monthNames.indexOf(thismon[0]);
+	var cmon=0
+	var cyr='';
+	if(index > 0){
+		cmon=index-1;
+		cyr=thismon[1];
+		$("#monyr").text(monthNames[cmon]+'-'+cyr);
+	}else{
+		cmon=11;
+		cyr=parseInt(thismon[1])-1;
+		$("#monyr").text(monthNames[cmon]+'-'+cyr);
+	}
+	
+	if((tyr == cyr && cmon < tmon) || (cyr < tyr)){
+		$(".nexmon").show();
+	}
+	showchart(monthNames[cmon]+'-'+cyr);
+})
+$('.nexmon').click(function(){
+	var thismon=($("#monyr").text()).split("-");
+	var monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
+	var date=new Date();
+	var tmon=date.getMonth();
+	var tyr=date.getFullYear();
+	var index=monthNames.indexOf(thismon[0]);
+	var cmon=0;
+	var cyr='';
+	if(index < 11){
+		cmon=index+1;
+		cyr=thismon[1];
+		$("#monyr").text(monthNames[cmon]+'-'+cyr);
+	}else{
+		cmon=0;
+		cyr=parseInt(thismon[1])+1;
+		$("#monyr").text(monthNames[cmon]+'-'+cyr);
+	}
+	
+	if((tyr == cyr && cmon >= tmon) || (cyr > tyr)){
+		$(".nexmon").hide();
+	}
+	showchart(showchart(monthNames[cmon]+'-'+cyr));
+})
