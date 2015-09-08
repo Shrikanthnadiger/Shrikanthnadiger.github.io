@@ -162,7 +162,7 @@ border-radius: 50%;
     }
 
     .sumdiv{
-      background-color: aqua;
+    background-color: #8DC3E9;
     text-align: center;
     border: 2px solid pink;
     width: 11em;
@@ -175,14 +175,14 @@ border-radius: 50%;
     .sumdiv:hover{
       background-color: #A99AC1;
     }
-    #chUser>.sumdiv{border: 2px solid teal;}
+    #chUser>.sumdiv{border: 2px solid #00477F;}
     .sactive{
-      border: 2px solid green;
+      border: 2px solid #00477F;
     }
-    .arrow{position:relative;z-index:0;width:0;height:0;border-color:teal transparent transparent transparent;border-style:solid;border-width:15px;display: none;margin-left: 9em}
+    .arrow{position:relative;z-index:0;width:0;height:0;border-color:#00477F transparent transparent transparent;border-style:solid;border-width:15px;display: none;margin-left: 9em}
      .blink {
       margin-left: 5px;
-      color: teal;
+      color: #00477F;
      // animation: blink 1s steps(5, start) infinite;
      // -webkit-animation: blink 1s steps(5, start) infinite;
     }
@@ -250,12 +250,12 @@ background-color: black;
 }
 .bdata{
   height: 23em;
-  background-color: #B6FF00;
+  background-color: #8DC3E9;
   margin-top: -15px;
   border-radius: 10px;
 }
 .bar {
-  fill: steelblue;
+  fill: #00477F;
 }
 .bar:hover{
   fill:#FF1EA7;
