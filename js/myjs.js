@@ -124,7 +124,7 @@ var picker = new Pikaday(
 $(".sumdiv").click(function(){
 $(".sumdiv").removeClass("sactive");
 $(".sumdiv").css("border-color","pink")
-$(this).css("border-color","teal")
+$(this).css("border-color","#00477F")
 $(this).addClass("sactive");
 var typ=$(this).attr("type");
 $(".arrow").css("display","none");
