@@ -10,14 +10,16 @@
         <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
         <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+        <script src="http://d3js.org/topojson.v1.min.js"></script>
+        <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
         <link  rel="stylesheet" type="text/css" href="../css/stylesheet.css"> 
         <link  rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"> 
         <link rel="stylesheet" href="../css/pikaday.css">
         <script src="../js/pikaday.js"></script>
     </head>
     <body>
-        <div class="container" style="padding-right:15px;height:100%;background-color:aliceblue">
-            <header class="row" >
+        <div class="container" style="padding:0px;background-color:teal">
+            <header >
                 <div class="col-xs-4 col-sm-4 col-md-5 col-lg-5 " style="margin-top: 1em;"> <img src="../img/if.png" class="img-responsive">   </div>
                 <div class="hidden-xs col-sm-4 col-md-4 col-lg-4 vcentr" style="font-size: 1.5rem;height:65px"> <span>DASHBOARD</span> </div>
                 <div class="col-xs-8 col-sm-4 col-md-3 col-lg-3">
@@ -43,7 +45,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                            </span>
-                          <ul class="dropdown-menu" aria-labelledby="sidemenu">
+                          <ul class="dropdown-menu" aria-labelledby="sidemenu" style="right:0;left:initial">
                             <li class="showdata active" type="dashboard"><a href="#">Dashboard</a></li>
                             <li class="showdata" type="users"><a href="#">Users</a></li>
                           </ul>
@@ -52,30 +54,31 @@
                  </div>
             </header>
             
-            	<div class="col-md-2 visible-md visible-lg" id="leftBar" style="background-color:#313947;margin-left:-15px"> 
+            	<div class="col-md-2 visible-md visible-lg" id="leftBar" > 
                     <div class="active showdata" type="dashboard">  Dashboard</div>
                     <div class="showdata"  type="users"> Users</div>
                 </div> 
-            	<div id="rightBar" class="col-sm-12  col-md-10">
+            	<div id="rightBar" class="col-xs-12  col-md-10" style="background-color:aliceblue">
             	 <div id="dashboard" class="data">
                     <div class="col-xs-12">
-                                <div class="col-sm-6 col-md-2 col-lg-2" id="chUser">    </div>  
-                                <div class="col-sm-6 col-md-2 col-lg-2" id="chActiveu">   </div>  
-                                <div class="col-sm-6 col-md-2 col-lg-2" id="chLook">   </div>  
-                                <div class="col-sm-6 col-md-2 col-lg-2" id="chLooks">   </div>  
-                                <div class="col-sm-6 col-md-2 col-lg-2" id="chLookss">   </div>  
+                                <div class="col-xs-6 col-md-4 col-lg-2" id="chUser">    </div>  
+                                <div class="col-xs-6 col-md-4 col-lg-2" id="chActiveu">   </div>  
+                                <div class="hidden-xs hidden-sm col-md-4 col-lg-2" id="chLook">   </div>  
+                                <div class="visible-lg col-lg-2" id="chLooks">   </div>  
+                                <div class="visible-lg col-lg-2" id="chLookss">   </div>  
                     </div>
-                    <div class="col-xs-12 bdata" >
+                    <div class="col-xs-11 bdata"  style="margin-left:5%">
                         <div class="col-xs-12" style="padding: 10px;font-weight: bold;">
                         Users for <span  style=" padding: 10px; background-color: white; border-radius: 5em;">
                             <span class="glyphicon glyphicon-chevron-left premon"></span><span id="monyr"></span><span class="glyphicon glyphicon-chevron-right nexmon" style="display:none"></span>
 
                         </span>
                         </div>
-                        <div class="col-xs-12" id="bardata" style="overflow-x:auto">
+                        <div class="col-xs-12" id="bardata" style="overflow-x:auto;text-align:center">
 
                         </div>
                     </div>
+                    <div class="col-xs-12" id="mapdata" style="overflow-x:auto;top:15px;margin-bottom:25px"></div>
                   </div>
                   </div>
                   <div id="users" style="display:none;padding:0px" class="col-sm-12  col-md-10 data">
@@ -85,12 +88,11 @@
                     </div>
                     <script type="text/javascript" src="../js/dashboard.js"></script>
                 </div>
-            
-            <div class="row">
-                    <footer class="col-sm-12">&copy;invisiblefriend.com </footer>
-            </div>  
+                <footer class="col-xs-12">&copy;invisiblefriend.com </footer>
+           
         </div>
         <script type="text/javascript" src="../js/newjs.js"></script>
         <script type="text/javascript" src="../js/myjs.js" ></script>
+        <script type="text/javascript" src="../js/map.js" ></script>
     </body>
 </html>    

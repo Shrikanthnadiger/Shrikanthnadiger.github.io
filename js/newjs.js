@@ -169,7 +169,7 @@ var g =  svg.selectAll(".arc")
  function showchart(mon_yr){
 
  	
-  	var width =820;
+  	var width =750;
 	var height = 210;
 	var margin = {top: 30, right: 30, bottom: 30, left: 40};
 var x = d3.scale.ordinal()
@@ -184,7 +184,7 @@ var xAxis = d3.svg.axis()
 $("#bardata").html("");
 var chart = d3.select("#bardata")
 	.append("svg")
-    .attr("width", width + margin.left + margin.right)
+    .attr("width", width +  margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(0," + margin.top + ")");
@@ -246,7 +246,7 @@ var barDataset = [
       .on("mouseover", tip.show)
       .on("mouseout", tip.hide)
       .transition()  
-      .delay(function(d,i){            return i*50;        }) 
+      .delay(function(d,i){            return i*50;        }) 	
       .attr("x", function(d) { return x(d.x); })
       .attr("y", function(d) { return y(d.y); })
       .attr("rx",5)
@@ -267,7 +267,7 @@ var barDataset = [
             return d.y;
           }) 
           .attr("x",function(d){
-            return x(d.x)+15;
+            return x(d.x)+10;
           }) 
           .attr("y",function(d){ 
            return ( y(d.y)-5); 
