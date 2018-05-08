@@ -13,33 +13,71 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
     $( function() {
-    $( ".draggable tr" ).draggable({
+    $( ".draggable tr,.dock tr td" ).draggable({
       helper: "clone"
     });
-
-    $( "#loader tr td" ).droppable({
+   
+   $( "#loader tr td" ).droppable({
       drop: function( event, ui ) {
-       let load = $(ui.draggable).find(".ld").text();
-       let slot = parseInt($(ui.draggable).find(".st").text());
-       let index = $(this).index();
-       let tc_count = $(this).parent().find("td").length;
-       // dont drop if it is first cell
-       //dont drop if expected slot is not available
-       if(index == 0 || tc_count == (index+1) && slot > 1)
-        alert("NP")
-       else {
-         event.target.setAttribute('colspan',slot)
-         $(this).text(load)
+      
+        if(($(ui.draggable)[0].nodeName) == "TD") {
+           if(event.target.innerText == '') {
+            $(this).text($(ui.draggable).text());
+            $(ui.draggable).text('');
+           }
+           else alert("Something Wrong")      
+
+        }else {
+
+          let load = $(ui.draggable).find(".ld").text();
+          let slot = parseInt($(ui.draggable).find(".st").text());
+          let index = $(this).index();
+          let tc_count = $(this).parent().find("td").length;
+
+          // dont drop if it is first cell
+          //dont drop if expected slot is not available
+          if(index == 0 || slot == 0 || event.target.innerText != '' || tc_count == (index+1) && slot > 1)
+            alert("Something Wrong")
+          else if(slot == 1) {
+
+            if(event.target.getAttribute('colspan') == null)
+              $(this).text(load)
+              $(ui.draggable).remove();
+          
+          }
+          else {
+            // check slots are available
+            let res = false;
+            for(var i=1; i<slot;i++){
+              index++;
+              if($(this).parent().find('td:eq('+index+')').text() == '')
+                 res = true
+              else{
+                i = slot
+                res =  false
+                alert('No Sufficient Slots')
+              }
+            }
+            if(res) {
+              index-=slot-1;
+              for(var i=1; i<slot;i++) {
+                event.target.parentNode.deleteCell(index+i);
+              }
+              event.target.setAttribute('colspan',slot)
+              $(this).text(load)
+             $(ui.draggable).remove();
+            }
+          }
         }
       }
     });
-  } );
+  });
   </script>
 </head>
 <body>
   <div style="display: flex;">
   <div style=" width: 60%;display: inline-block;">
-<table class="draggable" style="width:100%" id="loader">
+<table class="dock" style="width:100%" id="loader">
   <tr>
     <th>no</th>
     <th>s1</th> 
@@ -74,6 +112,13 @@
     <td></td>
     <td></td> 
     <td></td>
+  </tr>
+  <tr>
+    <td> Un assigned </td>
+    <td class="ld">201</td>
+    <td class="ld">504</td>
+    <td class="ld"></td>
+    <td class="ld"></td>
   </tr>
 </table>
 </div>
