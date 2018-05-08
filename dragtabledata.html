@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <style type="text/css">
+    tr{
+      background-color: lightblue;
+    }
+    td{
+      text-align: center;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+    $( function() {
+    $( ".draggable tr" ).draggable({
+      helper: "clone"
+    });
+
+    $( "#loader tr td" ).droppable({
+      drop: function( event, ui ) {
+       let load = $(ui.draggable).find(".ld").text();
+       let slot = parseInt($(ui.draggable).find(".st").text());
+       let index = $(this).index();
+       let tc_count = $(this).parent().find("td").length;
+       // dont drop if it is first cell
+       //dont drop if expected slot is not available
+       if(index == 0 || tc_count == (index+1) && slot > 1)
+        alert("NP")
+       else {
+         event.target.setAttribute('colspan',slot)
+         $(this).text(load)
+        }
+      }
+    });
+  } );
+  </script>
+</head>
+<body>
+  <div style="display: flex;">
+  <div style=" width: 60%;display: inline-block;">
+<table class="draggable" style="width:100%" id="loader">
+  <tr>
+    <th>no</th>
+    <th>s1</th> 
+    <th>s2</th>
+    <td>s3</td>
+    <td>s4</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td></td> 
+    <td></td>
+    <td></td> 
+    <td></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td></td> 
+    <td></td>
+    <td></td> 
+    <td></td>
+  </tr>
+   <tr>
+    <td>3</td>
+    <td></td> 
+    <td></td>
+    <td></td> 
+    <td></td>
+  </tr>
+   <tr>
+    <td>4</td>
+    <td></td> 
+    <td></td>
+    <td></td> 
+    <td></td>
+  </tr>
+</table>
+</div>
+<div style=" width: 30%;display: inline-block;">
+<table class="draggable" style="width:100%" id="load">
+  <tr>
+    <th>L</th>
+    <th>D</th>
+    <th>S</th>
+  </tr>
+  <tr>
+    <td class="ld">123</td>
+    <td>3</td>
+    <td class="st">2</td>
+  </tr>
+  <tr>
+    <td class="ld">345</td>
+    <td>3</td>
+    <td class="st">1</td>
+  </tr>
+</table>
+</div>
+</div>
+</body>
+</html>
