@@ -16,16 +16,58 @@
     $( ".draggable tr,.dock tr td" ).draggable({
       helper: "clone"
     });
-   
-   $( "#loader tr td" ).droppable({
+    
+    function checkcells(event,ui,slot,load,index,ths){
+      let res = false;
+        for(var i=1; i<slot;i++){
+          index++;
+          if($(ths).parent().find('td:eq('+index+')').text() == '')
+             res = true
+          else{
+            i = slot
+            res =  false
+            alert('No Sufficient Slots')
+          }
+        }
+        if(res) {
+          index-=slot-1;
+          console.log(slot)
+          for(var i=1; i<slot;i++) {
+            event.target.parentNode.deleteCell(index+i);
+          }
+          event.target.setAttribute('colspan',slot)
+          $(ths).css('background-color','orange').text(load)
+        }
+        return res;
+    }
+
+    $("#loader tr td" ).droppable({
       drop: function( event, ui ) {
-      
-        if(($(ui.draggable)[0].nodeName) == "TD") {
-           if(event.target.innerText == '') {
+
+      if(event.target.innerText == '') {
+        if(($(ui.draggable)[0].nodeName) == "TD" && !$(this).parent().hasClass('unassigned')) {
+          if($(ui.draggable).attr('colspan') == null) {
             $(this).text($(ui.draggable).text());
-            $(ui.draggable).text('');
-           }
-           else alert("Something Wrong")      
+            $(this).css('background-color','orange');
+            $(ui.draggable).css('background-color','lightblue').text('');
+          }else {
+            let slot = $(ui.draggable).attr('colspan');
+            let index = $(this).index();
+            let s_index = $(ui.draggable).index();
+            let load = $(ui.draggable).text();
+            let tc_count = $(this).parent().find("td").length;
+          // dont drop if it is first cell
+          //dont drop if expected slot is not available
+          if(index == 0 || tc_count == (index+1))
+            alert("Something Wrong")
+          else if(checkcells(event,ui,slot,load,index,this))
+            {
+              $(ui.draggable).attr('colspan',1);
+              $(ui.draggable).css('background-color','lightblue').text('');
+              for(var i=1; i<slot;i++)
+                 $(ui.draggable)[0].parentNode.insertCell(index+i);
+            }
+          }
 
         }else {
 
@@ -36,40 +78,21 @@
 
           // dont drop if it is first cell
           //dont drop if expected slot is not available
-          if(index == 0 || slot == 0 || event.target.innerText != '' || tc_count == (index+1) && slot > 1)
+          if(index == 0 || slot == 0 || tc_count == (index+1) && slot > 1)
             alert("Something Wrong")
           else if(slot == 1) {
 
             if(event.target.getAttribute('colspan') == null)
-              $(this).text(load)
+              $(this).css('background-color','orange').text(load)
               $(ui.draggable).remove();
           
           }
-          else {
-            // check slots are available
-            let res = false;
-            for(var i=1; i<slot;i++){
-              index++;
-              if($(this).parent().find('td:eq('+index+')').text() == '')
-                 res = true
-              else{
-                i = slot
-                res =  false
-                alert('No Sufficient Slots')
-              }
-            }
-            if(res) {
-              index-=slot-1;
-              for(var i=1; i<slot;i++) {
-                event.target.parentNode.deleteCell(index+i);
-              }
-              event.target.setAttribute('colspan',slot)
-              $(this).text(load)
-             $(ui.draggable).remove();
-            }
-          }
+          else if(checkcells(event,ui,slot,load,index,this))
+                  $(ui.draggable).remove();
         }
       }
+      else alert("Something Wrong")
+    }
     });
   });
   </script>
@@ -113,11 +136,10 @@
     <td></td> 
     <td></td>
   </tr>
-  <tr>
+  <tr class="unassigned">
     <td> Un assigned </td>
     <td class="ld">201</td>
-    <td class="ld">504</td>
-    <td class="ld"></td>
+    <td class="ld" colspan="2">504</td>
     <td class="ld"></td>
   </tr>
 </table>
